@@ -15,7 +15,7 @@ function App() {
     <button>Add</button>
 
     <div>
-      <span>Name</span><brs/>
+      <span>Name</span><br/>
       <span>Phone</span>
       mbkjkkj
       <span>Rajnish</span>
