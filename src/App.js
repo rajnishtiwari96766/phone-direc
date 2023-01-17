@@ -17,7 +17,7 @@ function App() {
     <div>
       <span>Name</span><br/>
       <span>Phone</span>
-      mbkjkkj
+      <span>hiii</span>
       <span>Rajnish</span>
     </div>
     </div>
