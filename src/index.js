@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Showsubscribers from './Showsubscribers';
 import reportWebVitals from './reportWebVitals';
 import Addsubscriber from './Addsubscriber';
 import './common/common.css'
@@ -9,7 +9,7 @@ import './common/common.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Addsubscriber />
   </React.StrictMode>
 );
 

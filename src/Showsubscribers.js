@@ -1,15 +1,15 @@
 // import logo from './logo.svg';
-import './App.css';
+import './Showsubscribers.css';
 import Header from "./Header";
 
 import React, { Component } from "react";
 import { render } from '@testing-library/react';
 
 
-function App() {
-  function deletehandler(message){
-    alert(message);
-  }
+// function App() {
+//   function deletehandler(message){
+//     alert(message);
+//   }}
 
 
   // let subscirbers=[
@@ -24,7 +24,7 @@ function App() {
   //     phone:"***********"
   //   }
   // ]
-  class App extends Component{
+  class Showsubscribers extends Component{
     constructor(){
       super();
       this.state={
@@ -34,16 +34,19 @@ function App() {
     }
     componentDidMount(){
       let newSubscriber={
-        id:1,
+        id:11,
         name:"Rajnish",
         phone:"8888888888"
-      }
+      };
       let subsribersList=this.state.subscribersListToShow;
       subsribersList.push(newSubscriber);
       this.setState({subscribersListToShow:subsribersList});
       console.log("component did mount called")
     }
   
+    deletehandler=(message)=>{
+      alert(message);
+    }
 render(){
   console.log("render called")
 
@@ -60,14 +63,15 @@ render(){
 
    {
     this.state.subscribersListToShow.map(sub =>{
-      return <div key={sub.id} className='grid-container'>
+      return( <div key={sub.id} className='grid-container'>
       <span className='grid-item'>{sub.name}</span>
       <span className='grid-item'>{sub.phone}</span>
       
       <span className='grid-item action-btn-container'>
-      <button className='custom-btn delete-btn' onClick={()=> {deletehandler('delete clicked')}}>Delete</button>
+      <button className='custom-btn delete-btn' onClick={()=> {this.deletehandler('delete clicked')}}>Delete</button>
       </span>
       </div>
+      );
     })
    }
       </div>
@@ -75,6 +79,6 @@ render(){
   );
 }
 }
-}
 
-export default App;
+
+export default Showsubscribers;
