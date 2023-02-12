@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import Header from "./Header";
 
 import React from "react";
@@ -12,13 +12,11 @@ function App() {
 
     <div>
       <Header/>
-    <button>Add</button>
+    <button>ADD</button>
 
     <div>
-      <span>Name</span><br/>
+      <span>Name</span>
       <span>Phone</span>
-      <span>hiii</span>
-      <span>Rajnish</span>
     </div>
     </div>
   );

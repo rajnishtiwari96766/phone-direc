@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+button{
+  padding: 10px 20px;
+  background-color: #7ab97a;
+  color:#fff;
+  margin: 25px;
+  border: none;
+}
+
+span{
+  padding: 40px;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: grey;
+}
