@@ -11,30 +11,7 @@ class Showsubscribers extends Component {
   onDeletedClick = (subscriberId) => {
     this.props.deleteSubscriberHandler(subscriberId);
   }
-  // constructor(){
-  //   super();
-  //   this.state={
-  //     subscribersListToShow:[]
-  //   }
-  //   console.log("constructor called")
-  // }
-  // componentDidMount(){
-  //   let newSubscriber={
-  //     id:11,
-  //     name:"Rajnish",
-  //     phone:"8888888888"
-  //   };
-  //   let subsribersList=this.state.subscribersListToShow;
-  //   // subsribersList.push(newSubscriber);
-  //   this.setState({subscribersListToShow:subsribersList});
-  //   console.log("component did mount called")
-  // }
-
-  // deletehandler=(message)=>{
-  //   alert(message);
-  // }
   render() {
-    // console.log("render called")
 
     return (
       <div className='component-container'>
