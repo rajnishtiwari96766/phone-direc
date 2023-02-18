@@ -4,81 +4,65 @@ import Header from "./Header";
 
 import React, { Component } from "react";
 import { render } from '@testing-library/react';
+import { Link } from 'react-router-dom';
 
+class Showsubscribers extends Component {
 
-// function App() {
-//   function deletehandler(message){
-//     alert(message);
-//   }}
-
-
-  // let subscirbers=[
-  //   {
-  //     id:1,
-  //     name:"Rajnish Tiwari",
-  //     phone:"***********"
-  //   },
-  //   {
-  //     id:2,
-  //     name:"Anvi aggarwal",
-  //     phone:"***********"
+  onDeletedClick = (subscriberId) => {
+    this.props.deleteSubscriberHandler(subscriberId);
+  }
+  // constructor(){
+  //   super();
+  //   this.state={
+  //     subscribersListToShow:[]
   //   }
-  // ]
-  class Showsubscribers extends Component{
-    constructor(){
-      super();
-      this.state={
-        subscribersListToShow:[]
-      }
-      console.log("constructor called")
-    }
-    componentDidMount(){
-      let newSubscriber={
-        id:11,
-        name:"Rajnish",
-        phone:"8888888888"
-      };
-      let subsribersList=this.state.subscribersListToShow;
-      subsribersList.push(newSubscriber);
-      this.setState({subscribersListToShow:subsribersList});
-      console.log("component did mount called")
-    }
-  
-    deletehandler=(message)=>{
-      alert(message);
-    }
-render(){
-  console.log("render called")
+  //   console.log("constructor called")
+  // }
+  // componentDidMount(){
+  //   let newSubscriber={
+  //     id:11,
+  //     name:"Rajnish",
+  //     phone:"8888888888"
+  //   };
+  //   let subsribersList=this.state.subscribersListToShow;
+  //   // subsribersList.push(newSubscriber);
+  //   this.setState({subscribersListToShow:subsribersList});
+  //   console.log("component did mount called")
+  // }
 
-  return (
-    <div className='component-container'>
-      <Header heading="Phone-directory" />
-      <div className='component-body-container'>
-    <button className='custom-btn add-btn'>ADD</button>
+  // deletehandler=(message)=>{
+  //   alert(message);
+  // }
+  render() {
+    // console.log("render called")
 
-    <div className='grid-container heading-container'>
-      <span className='grid-item name-heading'>Name</span>
-      <span className='grid-item phone-heading'>Phone</span>
-    </div>
+    return (
+      <div className='component-container'>
+        <Header heading="Phone-directory" />
+        <div className='component-body-container'>
+          <Link to='/add'><button className='custom-btn add-btn'>ADD</button> </Link>
 
-   {
-    this.state.subscribersListToShow.map(sub =>{
-      return( <div key={sub.id} className='grid-container'>
-      <span className='grid-item'>{sub.name}</span>
-      <span className='grid-item'>{sub.phone}</span>
-      
-      <span className='grid-item action-btn-container'>
-      <button className='custom-btn delete-btn' onClick={()=> {this.deletehandler('delete clicked')}}>Delete</button>
-      </span>
+          <div className='grid-container heading-container'>
+            <span className='grid-item name-heading'>Name</span>
+            <span className='grid-item phone-heading'>Phone</span>
+          </div>
+
+          {
+            this.props.subscribersList.map(sub => {
+              return (<div key={sub.id} className='grid-container'>
+                <span className='grid-item'>{sub.name}</span>
+                <span className='grid-item'>{sub.phone}</span>
+
+                <span className='grid-item action-btn-container'>
+                  <button className='custom-btn delete-btn' onClick={this.onDeletedClick.bind(this,sub.id)}>Delete</button>
+                </span>
+              </div>
+              )
+            })
+          }
+        </div>
       </div>
-      );
-    })
-   }
-      </div>
-      </div>
-  );
+    );
+  }
 }
-}
-
-
 export default Showsubscribers;
