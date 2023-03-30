@@ -1,45 +1,62 @@
-// import logo from './logo.svg';
-import './Showsubscribers.css';
-import Header from "./Header";
+import React,{Component} from "react";
+import Addsubscriber from "./Addsubscriber";
+import Showsubscribers from "./Showsubscribers";
+import {BrowserRouter as Router,Route} from 'react-router-dom'
 
-import React, { Component } from "react";
-import { render } from '@testing-library/react';
-import { Link } from 'react-router-dom';
+class Phonedirectory extends Component{
 
-class Showsubscribers extends Component {
+    constructor(){
+        super();
+        this.state={
+            //list of all the subscribers will be accessed from this smart component
+            subscriberslist:[
+                {
+                    id:1,
+                    name:'Rajjo',
+                    phone:'99999999999'
+                }, 
+                {
+                    id:2,
+                    name:'goluuuuu',
+                    phone:'88888888888'
+                }
+            ] 
+        }
+    }
+    deletesubscriberhandler=(subscriberId)=>{
+        let subscribersList=this.state.subscriberslist;
+        let subscriberIndex=0;
+        subscribersList.forEach(function(subscriber,index){
+            if(subscriber.id===subscriberId){
+                subscriberIndex=index;
+            }
+        },this);
+        let newSubscribers=subscribersList;
+        newSubscribers.splice(subscriberIndex,1);
+        this.setState({subscribers:newSubscribers});
+    }
 
-  onDeletedClick = (subscriberId) => {
-    this.props.deleteSubscriberHandler(subscriberId);
-  }
-  render() {
-
-    return (
-      <div className='component-container'>
-        <Header heading="Phone-directory" />
-        <div className='component-body-container'>
-          <Link to='/add'><button className='custom-btn add-btn'>ADD</button> </Link>
-
-          <div className='grid-container heading-container'>
-            <span className='grid-item name-heading'>Name</span>
-            <span className='grid-item phone-heading'>Phone</span>
-          </div>
-
-          {
-            this.props.subscribersList.map(sub => {
-              return (<div key={sub.id} className='grid-container'>
-                <span className='grid-item'>{sub.name}</span>
-                <span className='grid-item'>{sub.phone}</span>
-
-                <span className='grid-item action-btn-container'>
-                  <button className='custom-btn delete-btn' onClick={this.onDeletedClick.bind(this,sub.id)}>Delete</button>
-                </span>
-              </div>
-              )
-            })
-          }
-        </div>
-      </div>
-    );
-  }
+    addsubscriberHandler=(newSubscriber)=>{
+        let subscribersList=this.state.subscriberslist;
+        if(subscribersList.length>0){
+            newSubscriber.id=subscribersList[subscribersList.length-1].id+1;
+        }else{
+            newSubscriber.id=1;
+        }
+        subscribersList.push(newSubscriber);
+        this.setState({subscribersList:subscribersList});
+       
+    }
+    render(){
+        return(
+            <Router>
+                <div className="main-container">
+                <Route exact path='/' render={(props)=> (<Showsubscribers {...props} subscriberslist={this.state.subscriberslist} deletesubscriberhandler={this.deletesubscriberhandler}/>)} />
+                <Route exact path='/add' render={({history},props) => (<Addsubscriber history={history} {...props} addsubscriberHandler={this.addsubscriberHandler} />)}/>
+                </div>
+            </Router>
+        )
+    }
 }
-export default Showsubscribers;
+export default Phonedirectory;
+
